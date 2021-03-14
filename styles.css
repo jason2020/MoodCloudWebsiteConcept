@@ -207,7 +207,7 @@ Layouts in grid, small elements using flexbox ie. Nav bar
     cursor: pointer;
   }
   
-  /* When moving the mouse over the submit button, add a darker green color */
+  /* When moving the mouse over the submit button, add a darker blue color */
   .contact-form-wrapper button[name=btn]:hover {
     background-color: rgb(106, 196, 252);
   }
