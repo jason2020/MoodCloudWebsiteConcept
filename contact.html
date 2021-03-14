@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact us</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=RocknRoll+One&display=swap"
+    rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="images/moodcloud.png"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-wrapper">
+            <div class="left-side">
+                <div class="nav-link-wrapper">
+                    <a href="index.html">Home</a>
+                </div>
+                
+                <div class="nav-link-wrapper">
+                    <a href="about.html">About</a>
+                </div>
+
+                <div class="nav-link-wrapper active-nav-link">
+                    <a href="contact.html">Contact us</a>
+                </div>
+                
+                <div class="nav-link-wrapper">
+                    <a href="https://drive.google.com/file/d/18485AFKhEkovbexJfOFjb26AHKhTU8AU/view?usp=sharing"
+                    >NVC Paper</a>
+                </div>
+            </div>
+
+            <div class="right-side">
+                <div class="start-up">
+                    <div>MOODCLOUD</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="two-column-wrapper">
+                <div class="team-info-wrapper">
+                    <h1>Our Team</h1>
+                    <pre class="tab">Christine Ly                         Biomedical Engineering, B.S.</pre>
+                    <pre class="tab">Stephen Kakuda                  Computer Science, B.S.</pre> 
+                    <pre class="tab">Darian Gunawan                 Business Administration, B.A.</pre>
+                    <pre class="tab">Jimmy Nguyen                       Business Economics, B.A.</pre>
+                    <pre class="tab">Jennifer Cheong                 Journalism, B.A.</pre>
+                </div>
+                <div class="contact-content-wrapper">
+                    <h1>Contact Form</h1>
+
+                    <div class="contact-form-wrapper">
+                        <form action="">
+                            <label for = "name">Name</label>
+                            <input type = "text" id = 'name' placeholder = "Your Name"> 
+                            <label for = "email">E-mail</label>
+                            <input type = "text" id = 'email' placeholder = "Your e-mail">
+                            <label for = "message">Message</label>
+                            <textarea name="message" id="message" placeholder="Your message"></textarea>
+                            <button name = 'btn' id='btn'>Submit</button>
+                        </form>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+<script>
+    let users = [];
+    const storeInput = () => {
+        if (document.getElementById('name').value === '') {
+            alert('Please enter a name.')
+            return
+        }
+        if (document.getElementById('email').value === '') {
+            alert('Please enter an e-mail.')
+            return
+        }
+        if (document.getElementById('message').value === '') {
+            alert('Please enter a message.')
+            return
+        }
+
+        let userInfo = {
+            // Gives the values of each user input
+            name: document.getElementById('name').value, 
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        }
+        users.push(userInfo);
+        document.querySelector('form').reset(); // Clears the form for the next entries
+        
+        console.log(users[0], users[1], users[2]);
+
+        //saving to localStorage
+        localStorage.setItem('Users', JSON.stringify(users));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('btn').addEventListener('click', storeInput);
+    });
+</script>
+</body>
+</html>
