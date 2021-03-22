@@ -1,0 +1,12 @@
+{
+  "name": "MoodCloudWebsiteConcept",
+  "displayName": "MoodCloudWebsiteConcept",
+  "expo": {
+    "name": "MoodCloudWebsiteConcept",
+    "slug": "MoodCloudWebsiteConcept",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
