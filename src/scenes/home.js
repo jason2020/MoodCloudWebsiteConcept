@@ -1,13 +1,10 @@
 import React from 'react';
 import {SafeAreaView, Text, TouchableHighlight} from 'react-native';
 
-const HomeScreen = ({navigation}) => (
+const HomeScreen = () => (
   <SafeAreaView>
-    <Text>This is the homepage. Blah blah blah</Text>
+    <Text>This is the homepage. Welcome. Woo hoo!</Text>
 
-    <TouchableHighlight onPress={() => navigation.navigate('About')}>
-      <Text>Go to About</Text>
-    </TouchableHighlight>
   </SafeAreaView>
 );
 
