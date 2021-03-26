@@ -16,7 +16,7 @@ const BadPet = () => {
     return (
         <SafeAreaView>
             <Text>Pet Demo</Text>
-            <Thumbnail style={{transform: [{ rotate: `${offset}deg`}], "marginTop": `${offset}%`, "alignSelf":"center", "width":"100%", "height":"80%"}} square source={{ uri:'https://img.favpng.com/11/3/4/cat-pixel-art-pusheen-png-favpng-NiGKjk3kJ7cfbSJeYVNfeaF4j.jpg' }} />
+            <Thumbnail style={{transform: [{ rotate: `${offset}deg`}], "marginTop": `${offset}%`, "alignSelf":"center", "width":300, "height":300}} square source={{ uri:'https://img.favpng.com/11/3/4/cat-pixel-art-pusheen-png-favpng-NiGKjk3kJ7cfbSJeYVNfeaF4j.jpg' }} />
             <Text></Text>
             <Button onPress={feedCat} style={{"alignSelf":"center", "padding": "3%"}}><Text>Feed Me!</Text></Button>
         </SafeAreaView>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from "./../components/nav";
+import BadPet from "./badPet";
 import {
     Container,
     Header,
@@ -18,7 +19,9 @@ const AppsScreen = () => {
     return (
         <Container>
            <Header><Text>Apps</Text></Header>
-           <Content></Content>
+           <Content>
+               <BadPet/>
+           </Content>
            <Nav></Nav>
         </Container>
     );
