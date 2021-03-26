@@ -4,17 +4,20 @@ const Nav = () => {
     return (
         <Footer>
             <FooterTab>
-                <Button>
-                <Icon name="apps" />
-                </Button>
-                <Button>
-                <Icon name="camera" />
-                </Button>
                 <Button active>
-                <Icon active name="navigate" />
+                    <Icon active name="home" />
                 </Button>
                 <Button>
-                <Icon name="person" />
+                    <Icon name="podium-outline" /> 
+                </Button>
+                <Button>
+                    <Icon name="chatbubble-ellipses-outline"/> 
+                </Button>
+                <Button>
+                    <Icon name="apps" />
+                </Button>
+                <Button>
+                    <Icon name="person" />
                 </Button>
             </FooterTab>
         </Footer>
