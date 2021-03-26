@@ -26,39 +26,49 @@ import BadPet from "./src/scenes/badPet";
 import Nav from "./src/components/nav";
 import GoalTree from "./src/components/goalTree";
 import AppLoading from 'expo-app-loading';
-import { useFonts, Quicksand } from '@expo-google-fonts/inter';
-
-// each value represents a goal ring in Progress chart
-const commitsData = [
-  { date: "2017-01-02", count: 1 },
-  { date: "2017-01-03", count: 2 },
-  { date: "2017-01-04", count: 3 },
-  { date: "2017-01-05", count: 4 },
-  { date: "2017-01-06", count: 5 },
-  { date: "2017-01-30", count: 2 },
-  { date: "2017-01-31", count: 3 },
-  { date: "2017-03-01", count: 2 },
-  { date: "2017-04-02", count: 4 },
-  { date: "2017-03-05", count: 2 },
-  { date: "2017-02-30", count: 4 }
-];
-
-const chartConfig = {
-  backgroundGradientFrom: "#3ec300",
-  backgroundGradientFromOpacity: 1.0,
-  backgroundGradientTo: "#3ec300",
-  backgroundGradientToOpacity: 1.0,
-  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-  labelColor: () => `rgba(255, 255, 255, 1)`,
-  strokeWidth: 2, // optional, default 3
-  barPercentage: 0.5,
-  useShadowColorFromDataset: false, // optional
-};
+import { useFonts } from '@expo-google-fonts/inter';
+import { greaterThan } from "react-native-reanimated";
 
 const App = () => {
   let [fontsLoaded] = useFonts({
     'quicksand': require('./src/Quicksand-VariableFont_wght.ttf'),
   });
+
+  // each value represents a goal ring in Progress chart
+  const commitsData = [
+    { date: "2017-01-02", count: 1 },
+    { date: "2017-01-03", count: 2 },
+    { date: "2017-01-04", count: 3 },
+    { date: "2017-01-05", count: 4 },
+    { date: "2017-01-06", count: 5 },
+    { date: "2017-01-30", count: 2 },
+    { date: "2017-01-31", count: 3 },
+    { date: "2017-03-01", count: 2 },
+    { date: "2017-04-02", count: 4 },
+    { date: "2017-03-05", count: 2 },
+    { date: "2017-02-30", count: 4 }
+  ];
+
+  const chartConfig = {
+    backgroundGradientFrom: "#3ec300",
+    backgroundGradientFromOpacity: 1.0,
+    backgroundGradientTo: "#3ec300",
+    backgroundGradientToOpacity: 1.0,
+    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    labelColor: () => `rgba(255, 255, 255, 1)`,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false, // optional
+  };
+
+  const [isPress1, setIsPress1 ] = React.useState(false);
+  const [isPress2, setIsPress2 ] = React.useState(false);
+  const [isPress3, setIsPress3 ] = React.useState(false);
+  const [isPress4, setIsPress4 ] = React.useState(false);
+  const [isPress5, setIsPress5 ] = React.useState(false);
+  
+
+
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -84,19 +94,19 @@ const App = () => {
               </Body>
             </CardItem>
             <CardItem style={styles.buttonList}>
-              <Button style={styles.buttonItem}>
+              <Button style={isPress1 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress1(!isPress1)}>
                 <Text>1</Text>
               </Button>
-              <Button style={styles.buttonItem}>
+              <Button style={isPress2 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress2(!isPress2)}>
                 <Text>2</Text>
               </Button>
-              <Button style={styles.buttonItem}>
+              <Button style={isPress3 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress3(!isPress3)}>
                 <Text>3</Text>
               </Button>
-              <Button style={styles.buttonItem}>
+              <Button style={isPress4 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress4(!isPress4)}>
                 <Text>4</Text>
               </Button>
-              <Button style={styles.buttonItem}>
+              <Button style={isPress5 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress5(!isPress5)}>
                 <Text>5</Text>
               </Button>
             </CardItem>
@@ -201,6 +211,12 @@ const styles = StyleSheet.create({
   buttonItem: {
     marginLeft: 10,
     marginRight: 10,
+  },
+
+  pressedButton:   {
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: "green"
   },
 
   chartContainer: {
