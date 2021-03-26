@@ -60,14 +60,8 @@ const App = () => {
     barPercentage: 0.5,
     useShadowColorFromDataset: false, // optional
   };
-
-  const [isPress1, setIsPress1 ] = React.useState(false);
-  const [isPress2, setIsPress2 ] = React.useState(false);
-  const [isPress3, setIsPress3 ] = React.useState(false);
-  const [isPress4, setIsPress4 ] = React.useState(false);
-  const [isPress5, setIsPress5 ] = React.useState(false);
   
-
+  const [isPressed, setIsPress ] = React.useState(-1);
 
 
   if (!fontsLoaded) {
@@ -94,19 +88,19 @@ const App = () => {
               </Body>
             </CardItem>
             <CardItem style={styles.buttonList}>
-              <Button style={isPress1 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress1(!isPress1)}>
+              <Button style={isPressed != 0 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(0)}>
                 <Text>1</Text>
               </Button>
-              <Button style={isPress2 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress2(!isPress2)}>
+              <Button style={isPressed != 1 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(1)}>
                 <Text>2</Text>
               </Button>
-              <Button style={isPress3 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress3(!isPress3)}>
+              <Button style={isPressed != 2 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(2)}>
                 <Text>3</Text>
               </Button>
-              <Button style={isPress4 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress4(!isPress4)}>
+              <Button style={isPressed != 3 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(3)}>
                 <Text>4</Text>
               </Button>
-              <Button style={isPress5 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress5(!isPress5)}>
+              <Button style={isPressed != 4 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(4)}>
                 <Text>5</Text>
               </Button>
             </CardItem>
@@ -136,20 +130,20 @@ const App = () => {
                       datasets: [
                         {
                           data: [
-                            Math.random() * 100,
-                            Math.random() * 100,
-                            Math.random() * 100,
-                            Math.random() * 100,
-                            Math.random() * 100,
-                            Math.random() * 100,
+                            34,
+                            45,
+                            57,
+                            78,
+                            90,
+                            100,
                           ],
                         },
                       ],
                     }}
                     width={Dimensions.get("window").width - 50} // from react-native
                     height={220}
-                    yAxisLabel="$"
-                    yAxisSuffix="k"
+                    yAxisLabel=""
+                    yAxisSuffix=""
                     yAxisInterval={1} // optional, defaults to 1
                     chartConfig={{
                       backgroundColor: "#e26a00",
