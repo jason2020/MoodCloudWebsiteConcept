@@ -1,236 +1,26 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from "react-native-chart-kit";
-import {
-  Container,
-  Header,
-  Card,
-  Text,
-  Content,
-  CardItem,
-  Body,
-  Right,
-  Button,
-  Icon
-} from "native-base";
+import React from "react";
 import HomeScreen from "./src/scenes/home";
-import AboutScreen from "./src/scenes/about";
-import BadPet from "./src/scenes/badPet";
-import Nav from "./src/components/nav";
-import GoalTree from "./src/components/goalTree";
-import AppLoading from 'expo-app-loading';
-import { useFonts } from '@expo-google-fonts/inter';
-import { greaterThan } from "react-native-reanimated";
+import DataScreen from "./src/scenes/data";
+import CommunityScreen from "./src/scenes/community";
+import AppsScreen from "./src/scenes/apps";
+import AccountScreen from "./src/scenes/account";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+
+const Drawer = createDrawerNavigator();
 
 const App = () => {
-  let [fontsLoaded] = useFonts({
-    'quicksand': require('./src/Quicksand-VariableFont_wght.ttf'),
-  });
-
-  // each value represents a goal ring in Progress chart
-  const commitsData = [
-    { date: "2017-01-02", count: 1 },
-    { date: "2017-01-03", count: 2 },
-    { date: "2017-01-04", count: 3 },
-    { date: "2017-01-05", count: 4 },
-    { date: "2017-01-06", count: 5 },
-    { date: "2017-01-30", count: 2 },
-    { date: "2017-01-31", count: 3 },
-    { date: "2017-03-01", count: 2 },
-    { date: "2017-04-02", count: 4 },
-    { date: "2017-03-05", count: 2 },
-    { date: "2017-02-30", count: 4 }
-  ];
-
-  const chartConfig = {
-    backgroundGradientFrom: "#3ec300",
-    backgroundGradientFromOpacity: 1.0,
-    backgroundGradientTo: "#3ec300",
-    backgroundGradientToOpacity: 1.0,
-    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    labelColor: () => `rgba(255, 255, 255, 1)`,
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5,
-    useShadowColorFromDataset: false, // optional
-  };
-  
-  const [isPressed, setIsPress ] = React.useState(-1);
-
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-
-    return (
-      <Container>
-        <Header>
-          <Body>
-            <Text style={{ alignSelf: "center", alignItems: "center", fontSize: 28, fontFamily: 'quicksand' }}>MoodCloud</Text>
-          </Body>
-          <Right>
-            <Button transparent>
-              <Icon name='menu' />
-            </Button>
-          </Right>
-        </Header>
-        <Content>
-          <Card>
-            <CardItem>
-              <Body>
-                <Text style={styles.cardTitle}>Check In</Text>
-              </Body>
-            </CardItem>
-            <CardItem style={styles.buttonList}>
-              <Button style={isPressed != 0 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(0)}>
-                <Text>1</Text>
-              </Button>
-              <Button style={isPressed != 1 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(1)}>
-                <Text>2</Text>
-              </Button>
-              <Button style={isPressed != 2 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(2)}>
-                <Text>3</Text>
-              </Button>
-              <Button style={isPressed != 3 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(3)}>
-                <Text>4</Text>
-              </Button>
-              <Button style={isPressed != 4 ? styles.buttonItem : styles.pressedButton} onPress={() => setIsPress(4)}>
-                <Text>5</Text>
-              </Button>
-            </CardItem>
-
-            <CardItem style={styles.progressCheck}>
-              <Body>
-                <GoalTree></GoalTree>
-              </Body>
-            </CardItem>
-          </Card>
-          <Card>
-            <CardItem>
-              <Body>
-                <Text style={styles.cardTitle}>History</Text>
-                <View style={styles.chartContainer}>
-                  <Text>Mood</Text>
-                  <LineChart
-                    data={{
-                      labels: [
-                        "January",
-                        "February",
-                        "March",
-                        "April",
-                        "May",
-                        "June",
-                      ],
-                      datasets: [
-                        {
-                          data: [
-                            34,
-                            45,
-                            57,
-                            78,
-                            90,
-                            100,
-                          ],
-                        },
-                      ],
-                    }}
-                    width={Dimensions.get("window").width - 50} // from react-native
-                    height={220}
-                    yAxisLabel=""
-                    yAxisSuffix=""
-                    yAxisInterval={1} // optional, defaults to 1
-                    chartConfig={{
-                      backgroundColor: "#e26a00",
-                      backgroundGradientFrom: "#fb8c00",
-                      backgroundGradientTo: "#ffa726",
-                      decimalPlaces: 2, // optional, defaults to 2dp
-                      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                      labelColor: (opacity = 1) =>
-                        `rgba(255, 255, 255, ${opacity})`,
-                      style: {
-                        borderRadius: 16,
-                      },
-                      propsForDots: {
-                        r: "6",
-                        strokeWidth: "2",
-                        stroke: "#ffa726",
-                      },
-                    }}
-                    bezier
-                    style={{
-                      marginVertical: 8,
-                      borderRadius: 16,
-                    }}
-                  />
-                </View>
-                <View style={styles.chartContainer}>
-                  <ContributionGraph
-                    values={commitsData}
-                    endDate={new Date("2017-04-01")}
-                    numDays={105}
-                    width={Dimensions.get("window").width - 50}
-                    height={220}
-                    chartConfig={chartConfig}
-                    style={{
-                      marginVertical: 8,
-                      borderRadius: 16,
-                    }}
-                  />
-                </View>
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-        <Nav></Nav>
-      </Container>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  cardTitle: {
-    fontSize: 24,
-  },
-
-  buttonList: {
-    alignSelf: "center",
-  },
-
-  buttonItem: {
-    marginLeft: 10,
-    marginRight: 10,
-  },
-
-  pressedButton:   {
-    marginLeft: 10,
-    marginRight: 10,
-    backgroundColor: "green"
-  },
-
-  chartContainer: {
-    marginTop: '2%',
-    alignSelf: 'center',
-  }
-});
-
-{
-  /* <Tabs>
-  <Tab heading={ <TabHeading><Icon name="home" /><Text>Home</Text></TabHeading>}>
-    <HomeScreen/>
-  </Tab>
-  <Tab heading={ <TabHeading><Text>About</Text></TabHeading>}>
-    <AboutScreen/>
-  </Tab>
-  <Tab heading={ <TabHeading><Icon name="apps" /></TabHeading>}>
-    <BadPet/>
-  </Tab>
-</Tabs> */
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Data" component={DataScreen} />
+        <Drawer.Screen name="Community" component={CommunityScreen} />
+        <Drawer.Screen name="Apps" component={AppsScreen} />
+        <Drawer.Screen name="Account" component={AccountScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
 }
 
 export default App
