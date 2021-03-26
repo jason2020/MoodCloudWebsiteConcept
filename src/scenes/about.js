@@ -11,7 +11,7 @@ const AboutScreen = () => {
     console.log(name, email, message);
     axios({
       method: 'post',
-      url: 'http://localhost:3000/contact',
+      url: 'http://192.168.1.15:3000/contact',
       data: {
         "name": name,
         "email": email,
